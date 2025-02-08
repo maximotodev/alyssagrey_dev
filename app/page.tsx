@@ -1,8 +1,11 @@
-import getTracks from "./components/getTracks";
 import Link from "next/link";
 import Image from "next/image";
 import { Track } from "@/lib/types";
 
+async function getTracks() {
+  const res = await fetch("http://127.0.0.1:3000/api/");
+  return res.json();
+}
 export default async function Home() {
   const { tracks } = await getTracks();
   return (
