@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { getTopTracks } from "@/lib/spotify";
 
 export async function GET() {
