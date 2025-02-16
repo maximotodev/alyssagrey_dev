@@ -4,12 +4,17 @@ import Image from "next/image";
 import { Track } from "@/lib/types";
 
 async function getTracks() {
-  const res = await fetch("http://127.0.0.1:3000/api/", { cache: "no-store" });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) {
     throw new Error("Failed to fetch tracks");
   }
+
   return res.json();
 }
+
 export default async function Tracks() {
   const { tracks } = await getTracks();
   return (
