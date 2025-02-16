@@ -4,10 +4,13 @@ import Image from "next/image";
 import { Track } from "@/lib/types";
 
 async function getTracks() {
-  const res = await fetch("http://127.0.0.1:3000/api/");
+  const res = await fetch("http://127.0.0.1:3000/api/", { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error("Failed to fetch tracks");
+  }
   return res.json();
 }
-const Tracks = async () => {
+export default async function Tracks() {
   const { tracks } = await getTracks();
   return (
     <div>
@@ -25,6 +28,4 @@ const Tracks = async () => {
       ))}
     </div>
   );
-};
-
-export default Tracks;
+}
