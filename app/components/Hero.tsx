@@ -7,6 +7,7 @@ const Hero: React.FC = () => {
     <section className="relative w-full h-screen">
       {/* Background Video with optimization */}
       <video
+        poster='/soho_pixie_cover.jpg'
         className="absolute top-0 left-0 w-full h-full object-cover"
         autoPlay
         loop
