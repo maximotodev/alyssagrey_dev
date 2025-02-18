@@ -1,36 +1,32 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import TracksCarousel from "./TracksCarousel"; // Import client component
 import { Track } from "@/lib/types";
 
-async function getTracks() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/`, {
-    cache: "no-store",
-  });
+// Function to fetch tracks from the API (server-side)
+async function getTracks(): Promise<{ tracks: Track[] }> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch tracks");
+    if (!res.ok) {
+      throw new Error("Failed to fetch tracks");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching tracks:", error);
+    return { tracks: [] }; // Return empty array on failure
   }
-
-  return res.json();
 }
 
 export default async function Tracks() {
-  const { tracks } = await getTracks();
+  const { tracks } = await getTracks(); // Fetch track data
+
   return (
     <div>
-      {tracks?.map((track: Track) => (
-        <Link href={track.songUrl} key={track.songUrl}>
-          <h1>{track.title}</h1>
-          <Image
-            priority
-            width={100}
-            height={100}
-            src={track.albumArtUrl}
-            alt={track.title}
-          />
-        </Link>
-      ))}
+      {/* Pass the fetched tracks to the client-side carousel component */}
+      <TracksCarousel tracks={tracks} />
     </div>
   );
 }
