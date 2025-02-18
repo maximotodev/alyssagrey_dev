@@ -20,8 +20,25 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
       {" "}
       {/* Centers the Swiper both vertically and horizontally */}
       <Swiper
-        spaceBetween={10}
-        slidesPerView={3}
+        breakpoints={{
+          300: {
+            slidesPerView: 1, // 1 slide per view on small screens
+          },
+          450: {
+            slidesPerView: 2, // 1 slide per view on small screens
+          },
+          650: {
+            slidesPerView: 3, // 1 slide per view on small screens
+          },
+          900: {
+            slidesPerView: 4, // 2 slides per view on medium screens
+          },
+          1024: {
+            slidesPerView: 5, // 3 slides per view on larger screens
+          },
+        }}
+        spaceBetween={0}
+        slidesPerView={3} // Default view: 1 slide per view
         loop={true}
         navigation
         pagination={{ clickable: true }}
@@ -30,9 +47,12 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
       >
         {tracks.map((track) => (
           <SwiperSlide key={track.songUrl} className="flex justify-center">
-            <Link href={track.songUrl}>
+            <Link className="flex justify-center" href={track.songUrl}>
               <div className="text-center">
-                <h1 className="text-white font-bold mb-2">{track.title}</h1>
+                <h1 className="text-white font-bold mb-2 text-sm sm:text-md md:text-l lg:text-xl">
+                  {track.title}
+                </h1>{" "}
+                {/* Font size changes based on screen size */}
                 <Image
                   priority
                   width={200}
