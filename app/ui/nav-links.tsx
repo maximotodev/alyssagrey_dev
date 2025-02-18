@@ -23,9 +23,9 @@ export function Links() {
         <Link
           key={href} // Unique key for each link
           href={href} // Navigation path
-          className={`mx-4 my-2 md:my-0 text-white-700 hover:text-pink-300 uppercase ${
+          className={`mx-2 sm:mx-6 md:mx-8 lg:mx-14 xl:mx-20 my-0 md:my-0 text-white-700 hover:text-pink-300 uppercase text-sm sm:text-base md:text-lg lg:text-2xl ${
             pathname === href ? "text-pink-400 font-bold" : ""
-          }`} // Apply active styling if the pathname matches the link
+          }`}
         >
           {label} {/* Display the label for each link */}
         </Link>

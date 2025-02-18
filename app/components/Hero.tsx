@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
         </h1>
       </div>
 
-      <div className="absolute bottom-10 w-full px-10 flex flex-col md:flex-row justify-between items-center md:items-start">
+      <div className="absolute bottom-14 w-full px-10 flex flex-col sm:flex-row md:flex-row justify-between items-center md:items-start">
         {" "}
         {/* Changed to flex-col on small screens */}
         {/* Social Media Bar */}
