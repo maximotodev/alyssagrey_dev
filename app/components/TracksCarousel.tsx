@@ -29,9 +29,12 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center h-screen w-full">
       <Swiper
-        slidesPerView={3}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 3 },
+        }}
         centeredSlides={true}
         loop={true}
         spaceBetween={0}
@@ -46,22 +49,14 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
             key={track.songUrl}
             className={`flex justify-center transition-transform duration-500 relative ${
               index === activeIndex
-                ? "scale-150 z-30"
-                : "scale-75 z-10 opacity-30"
+                ? "scale-125 z-30"
+                : "scale-75 z-10 opacity-50"
             }`}
           >
             <Link className="flex justify-center" href={track.songUrl}>
               <div className="text-center relative">
-                <Image
-                  priority
-                  src={track.albumArtUrl}
-                  alt={track.title}
-                  width={index === activeIndex ? 500 : 250}
-                  height={index === activeIndex ? 500 : 250}
-                  className="rounded-lg shadow-2xl transition-all duration-500"
-                />
                 <h1
-                  className={`text-white m-5 font-bold text-sm sm:text-md md:text-lg lg:text-xl relative z-40 transition-opacity duration-500 whitespace-nowrap ${
+                  className={`text-white font-bold mb-2 text-sm sm:text-md md:text-lg lg:text-xl relative z-40 transition-opacity duration-500 ${
                     index === activeIndex
                       ? "opacity-100 block"
                       : "opacity-0 hidden"
@@ -69,6 +64,14 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
                 >
                   {track.title}
                 </h1>
+                <Image
+                  priority
+                  src={track.albumArtUrl}
+                  alt={track.title}
+                  width={index === activeIndex ? 400 : 200}
+                  height={index === activeIndex ? 400 : 200}
+                  className="rounded-lg shadow-2xl transition-all duration-500"
+                />
               </div>
             </Link>
           </SwiperSlide>
