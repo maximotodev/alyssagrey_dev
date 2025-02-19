@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Track } from "@/lib/types";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, SwiperRef } from "swiper/react"; // Import SwiperRef
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,11 +16,12 @@ interface TracksCarouselProps {
 }
 
 export default function TracksCarousel({ tracks }: TracksCarouselProps) {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperRef>(null); // Use SwiperRef type
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handlePlay = () => {
-    if (swiperRef.current) {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      // Access swiper instance
       const currentTrack = tracks[activeIndex];
       if (currentTrack) {
         window.open(currentTrack.songUrl, "_blank");
@@ -38,7 +39,7 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
         pagination={{ clickable: true }}
         modules={[Navigation, Pagination]}
         className="w-full max-w-6xl"
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onSwiper={(swiper) => (swiperRef.current = { swiper })} // Assign object with swiper property
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
         {tracks.map((track, index) => (
@@ -70,7 +71,7 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
       </Swiper>
       <div className="flex justify-center gap-4 mt-4">
         <button
-          onClick={() => swiperRef.current?.slidePrev()}
+          onClick={() => swiperRef.current?.swiper.slidePrev()} // Access swiper property
           className="bg-gray-800 text-white p-2 rounded-full"
         >
           <FaStepBackward size={24} />
@@ -82,7 +83,7 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
           <FaPlay size={24} />
         </button>
         <button
-          onClick={() => swiperRef.current?.slideNext()}
+          onClick={() => swiperRef.current?.swiper.slideNext()} // Access swiper property
           className="bg-gray-800 text-white p-2 rounded-full"
         >
           <FaStepForward size={24} />
