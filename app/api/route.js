@@ -19,7 +19,7 @@ export async function GET() {
       songUrl: track.external_urls.spotify,
       title: track.name,
       album: track.album.name,
-      albumArtUrl: track.album.images[1].url,
+      albumArtUrl: track.album.images[0].url,
     }));
 
     return Response.json({ tracks });
