@@ -29,7 +29,7 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen w-full">
+    <div className="mt-6 flex flex-col justify-start items-center h-screen w-full">
       <Swiper
         slidesPerView={1}
         breakpoints={{
