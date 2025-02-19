@@ -35,7 +35,7 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
         slidesPerView={3}
         centeredSlides={true}
         loop={true}
-        spaceBetween={-200}
+        spaceBetween={-25}
         pagination={{ clickable: true }}
         modules={[Navigation, Pagination]}
         className="w-full max-w-6xl"
@@ -47,22 +47,29 @@ export default function TracksCarousel({ tracks }: TracksCarouselProps) {
             key={track.songUrl}
             className={`flex justify-center transition-transform duration-500 relative ${
               index === activeIndex
-                ? "scale-120 z-30 opacity-100"
-                : "scale-50 z-10 opacity-50"
+                ? "scale-150 z-30 opacity-100 w-[700px] h-[700px]" // Increased size for active slide
+                : "scale-50 z-10 opacity-30 w-[300px] h-[300px]" // Smaller size for other slides
             }`}
           >
             <Link className="flex justify-center" href={track.songUrl}>
               <div className="text-center relative">
-                <h1 className="text-white font-bold mb-2 text-sm sm:text-md md:text-lg lg:text-xl relative z-40">
+                <h1
+                  className={`text-white font-bold mb-2 text-sm sm:text-md md:text-lg lg:text-xl relative z-40 transition-opacity duration-500 ${
+                    index === activeIndex
+                      ? "opacity-100 block"
+                      : "opacity-0 hidden" // Added classes here
+                  }`}
+                >
                   {track.title}
                 </h1>
                 <Image
                   priority
                   src={track.albumArtUrl}
                   alt={track.title}
-                  width={500}
-                  height={500}
-                  className="rounded-lg w-auto h-auto relative z-40 shadow-2xl"
+                  width={index === activeIndex ? 500 : 300} // Adjust for larger screens
+                  height={index === activeIndex ? 500 : 300} // Adjust for larger screens
+                  // Responsive image sizing
+                  className="w-full h-full md:w-auto md:h-auto rounded-lg shadow-2xl"
                 />
               </div>
             </Link>
