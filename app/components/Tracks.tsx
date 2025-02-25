@@ -25,6 +25,7 @@ export default async function Tracks() {
 
   return (
     <div>
+      <h1 className="text-5xl text-white text-center m-10">MUSIC</h1>
       {/* Pass the fetched tracks to the client-side carousel component */}
       <TracksCarousel tracks={tracks} />
     </div>
