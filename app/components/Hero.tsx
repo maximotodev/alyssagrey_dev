@@ -1,5 +1,5 @@
 import React from "react";
-import SocialMediaBar from "../ui/SocialMediaBar";
+import SocialMediaBar from "./ui/SocialMediaBar";
 
 const Hero: React.FC = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Page() {
-  return <div>Events page</div>;
+  return <div>Events coming soon...</div>;
 }

@@ -1,4 +1,4 @@
-import Navbar from "@/app/ui/Navbar";
+import Navbar from "@/app/components/ui/Navbar";
 import Hero from "./components/Hero";
 import Videos from "./components/Videos";
 import TracksClientCarousel from "./components/TracksClientCarousel";
@@ -30,7 +30,7 @@ export default function Page() {
         id="events"
         className="h-screen flex items-center justify-center"
       >
-        <h1 className="text-4xl font-bold">Events</h1>
+        <h1 className="text-4xl font-bold">Events coming soon...</h1>
       </section>
     </div>
   );
